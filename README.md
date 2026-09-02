@@ -87,7 +87,7 @@ Durante o desenvolvimento do projeto foram utilizados conceitos como:
 - Funções de agregação (`SUM`)
 - Funções de data
 - Cálculos e métricas de negócio
-- Criação e alteração de tabelas (`CREATE`, `ALTER`)
+- Criação e alteração de tabelas (`CREATE`)
 - Inserção de dados (`INSERT`)
 - Relacionamentos entre tabelas
 - Primary Keys e Foreign Keys
