@@ -1,0 +1,39 @@
+
+-- FATURAMENTO MENSAL
+SELECT 
+to_char(date_trunc('month', p.data_pedido), 'MM/YYYY') AS mes_ano,
+sum(ip.preco_unitario * ip.quantidade) AS faturamento_total
+FROM itens_pedido ip
+JOIN pedidos p 
+ON ip.id_pedido = p.id_pedido
+WHERE p.status = 'Concluído'
+GROUP BY mes_ano
+ORDER BY mes_ano
+
+
+-- PRODUTO MAIS VENDIDO 
+SELECT
+pr.nome_produto,
+sum(ip.quantidade * ip.preco_unitario) AS total_vendido
+FROM produtos pr
+JOIN itens_pedido ip
+ON pr.id_produto = ip.id_produto
+JOIN pedidos p 
+ON ip.id_pedido = p.id_pedido
+WHERE p.status = 'Concluído'
+GROUP BY pr.nome_produto
+ORDER BY total_vendido DESC 
+
+
+-- VENDEDOR COM MAIOR FATURAMENTO
+SELECT
+v.nome_vendedor,
+sum(ip.quantidade * ip.preco_unitario) AS total_vendido
+FROM vendedores v
+JOIN pedidos p 
+ON v.id_vendedor = p.id_vendedor
+JOIN itens_pedido ip 
+ON p.id_pedido = ip.id_pedido 
+WHERE p.status = 'Concluído'
+GROUP BY v.nome_vendedor
+ORDER BY total_vendido DESC 
